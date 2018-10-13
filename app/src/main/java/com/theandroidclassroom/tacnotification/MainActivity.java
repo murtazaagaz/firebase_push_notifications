@@ -32,71 +32,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  Button button = findViewById(R.id.btn);
-         mRequestQue = Volley.newRequestQueue(this);
+        Button button = findViewById(R.id.btn);
+        mRequestQue = Volley.newRequestQueue(this);
         FirebaseMessaging.getInstance().subscribeToTopic("news");
 
-
-
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-    }
-    public void notification(View view){
-        sendNotification();
-    }
-
-    private void sendNotification1(){
-        // our json object will look like:
-
-
-
-        JSONObject mainObj = new JSONObject();
-        try {
-            mainObj.put("to","/topics/"+"news");
-            JSONObject notificationObj = new JSONObject();
-            notificationObj.put("title","any title");
-            notificationObj.put("body","any body");
-            mainObj.put("notification",notificationObj);
-
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL,
-                    mainObj,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.d("MUR", "onResponse: ");
-
-                            //codes here will run or success
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    // codes here will run on error
-
-                    Log.d("MUR", "onError: "+error.networkResponse);
-                }
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendNotification();
             }
-            ){
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String,String> header = new HashMap<>();
-                    header.put("content-type","application/json");
-                    header.put("authorization","key= ADD YOUR KEY HERE");
-                    return header;
-                }
-            };
-
-            mRequestQue.add(request);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+        });
 
     }
+
+
+
 
     private void sendNotification() {
 
