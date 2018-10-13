@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String,String> header = new HashMap<>();
                     header.put("content-type","application/json");
-                    header.put("authorization","key=AIzaSyAE7KUUU6tLrYp-fvZNOJGiLvsjo-YPeAM");
+                    header.put("authorization","key=YOUR AUTH KEY HERE");
                     return header;
                 }
             };
